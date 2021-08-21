@@ -6,6 +6,7 @@ function calculatePrice(specificId, price) {
     TableInput.innerText = price;
 
 }
+//total price updating
 function getInput(specificId) {
     const TableInput = document.getElementById(specificId + '-cost');
     const TableValue = parseInt(TableInput.innerText);
@@ -68,3 +69,22 @@ document.getElementById('urgent-delivery').addEventListener('click', function ()
     calculateTotalPrice();
 
 })
+
+//calculating promo code
+
+document.getElementById('promo-button').addEventListener('click', function () {
+    const promoInput = document.getElementById('promo-input');
+    const PromoValue = promoInput.value;
+    const footerTotalInput = document.getElementById('footer-total');
+    const footerTotal = footerTotalInput.innerText;
+    const TotalValue = calculateTotalPrice();
+    if (PromoValue == 'stevekaku') {
+        const discount = TotalValue * 0.2;
+        const afterPromoTotal = TotalValue - discount;
+        footerTotalInput.innerText = afterPromoTotal;
+    }
+    else {
+        return TotalValue;
+    }
+    promoInput.value = '';
+});
